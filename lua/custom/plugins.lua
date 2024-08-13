@@ -42,18 +42,6 @@ local plugins = {
     end,
   },
 
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function ()
-      require('copilot').setup({
-        suggestion = {
-          auto_trigger = true
-        }
-      })
-    end,
-  },
-
   { "fatih/vim-go" },
 
   {
@@ -156,6 +144,25 @@ local plugins = {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
     }
+  },
+
+  -- Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function ()
+      require('copilot').setup({
+        suggestion = {
+          auto_trigger = true
+        }
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
   }
 }
 
