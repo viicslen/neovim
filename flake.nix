@@ -5,8 +5,7 @@
     nvf.url = "github:notashelf/nvf";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
-  # https://flake.parts/module-arguments.html
+  outputs = inputs@{ flake-parts, self, ... }:
   flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, moduleWithSystem, ... }: {
     imports = [
       ./apps.nix

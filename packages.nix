@@ -14,12 +14,12 @@
       neotest-pest = pkgs.callPackage ./pkgs/neotest-pest.nix { };
 
       default = (inputs.nvf.lib.neovimConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          inherit pkgs;
           modules = [
             ./config
           ];
         })
         .neovim;
-    }
-  }
+    };
+  };
 }
