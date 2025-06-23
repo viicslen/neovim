@@ -1,25 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
-with lib; let
-  name = "nvf";
-  namespace = "programs";
-
-  cfg = config.modules.${namespace}.${name};
-in {
-  options.modules.${namespace}.${name} = {
-    enable = mkEnableOption (mdDoc name);
-  };
-
-  config = mkIf cfg.enable {
-    programs.nvf = {
-      enable = true;
-
-      settings = {
+{pkgs, lib, ...}: {
+  imports = [
+    ./keybinds.nix
+  ];
+   config = {
         vim = {
           viAlias = true;
           vimAlias = true;
@@ -297,6 +280,4 @@ in {
           };
         };
       };
-    };
-  };
 }
