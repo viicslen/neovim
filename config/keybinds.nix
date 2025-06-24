@@ -1,5 +1,5 @@
 {
-  programs.nvf.settings.vim = {
+  config.vim = {
     keymaps = [
       {
         key = "<C-s>";

@@ -1,4 +1,4 @@
-{pkgs, lib, ...}: {
+{pkgs, lib, inputs, config, ...}: {
   imports = [
     ./keybinds.nix
   ];
@@ -20,19 +20,6 @@
             enable = false;
             languages = ["en" "es"];
           };
-
-          theme = {
-            enable = mkForce false;
-          };
-
-          startPlugins = ["onedark" "base16"];
-          luaConfigRC.theme = inputs.nvf.lib.nvim.dag.entryBefore ["pluginConfigs" "lazyConfigs"] ''
-            require('onedark').setup {
-              transparent = true,
-              style = "darker"
-            }
-            require('onedark').load()
-          '';
 
           # LSP
           languages = {
@@ -75,16 +62,16 @@
             otter-nvim.enable = true;
             trouble.enable = true;
 
-            servers = {
-              phpactor = {
-                enable = true;
-                filetypes = ["php"];
-                cmd = [
-                  (lib.getExe pkgs.phpactor)
-                  "language-server"
-                ];
-              };
-            };
+            # lspconfig.sources.phpactor = mkForce ''
+            #   lspconfig.phpactor.setup {
+            #     capabilities = capabilities,
+            #     on_attach = default_on_attach,
+            #     cmd = {
+            #       "${getExe pkgs.phpactor}",
+            #       "language-server"
+            #     },
+            #   }
+            # '';
           };
 
           formatter.conform-nvim = {
@@ -205,7 +192,15 @@
 
           binds = {
             cheatsheet.enable = true;
-            hardtime-nvim.enable = true;
+            hardtime-nvim = {
+              enable = true;
+              setupOpts = {
+                disable_mouse = false;
+                restriction_mode = "hint";
+                force_exit_insert_mode = true;
+                disabled_keys = lib.mkLuaInline "{}";
+              };
+            };
 
             whichKey = {
               enable = true;
@@ -262,14 +257,14 @@
             };
 
             "neotest-pest" = {
-              package = pkgs.myVimPlugins.neotest-pest;
+              package = config.packages.neotest-pest;
               setupModule = "neotest-pest";
               setupOpts = {};
               lazy = true;
             };
 
             "laravel.nvim" = {
-              package = pkgs.myVimPlugins.laravel-nvim;
+              package = config.packages.laravel-nvim;
               setupModule = "laravel";
               cmd = ["Laravel"];
               lazy = true;
