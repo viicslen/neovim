@@ -10,19 +10,19 @@ in {
       nom = {
         type = "app";
         program = getExe (pkgs.writeShellApplication {
-          name = "nvf-smart-launcher";
+          name = "nvf-launcher";
           runtimeInputs = [ pkgs.nix-output-monitor ];
           text = ''
             # Function to check if rebuild is needed
             needs_rebuild() {
               # Simple check - you could make this more sophisticated
-              ! nix path-info github:viicslen/nvf-config >/dev/null 2>&1
+              ! nix path-info github:viicslen/neovim >/dev/null 2>&1
             }
 
             # If we need to rebuild, use nom
             if needs_rebuild; then
               echo "Building/updating nvf-config with enhanced output..."
-              nom build github:viicslen/nvf-config --no-link
+              nom build github:viicslen/neovim --no-link
             fi
 
             # Run neovim
