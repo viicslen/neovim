@@ -42,7 +42,18 @@
             alejandra --check ${self} < /dev/null | tee $out
           '';
         };
+
+        # Provide a development shell with nix-output-monitor
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nix-output-monitor
+            alejandra
+          ];
+          shellHook = ''
+            echo "Development shell with nix-output-monitor available"
+            echo "Use 'nom build' or 'nom run' for better build output"
+          '';
+        };
       };
-      debug = true;
     });
 }
