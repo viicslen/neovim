@@ -105,6 +105,13 @@
         };
       };
 
+      theme = {
+        enable = true;
+        name = "onedark";
+        style = "darker";
+        transparent = true;
+      };
+
       # Plugins
       telescope = {
         enable = true;
