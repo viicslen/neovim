@@ -1,6 +1,8 @@
 {
   neotest-pest,
   laravel-nvim,
+  mcphub-nvim,
+  mcp-hub,
   pkgs,
   lib,
   ...
@@ -133,8 +135,8 @@
         nvim-cmp.enable = true;
       };
 
+      dashboard.alpha.enable = true;
       autopairs.nvim-autopairs.enable = true;
-      dashboard.dashboard-nvim.enable = true;
       projects.project-nvim.enable = true;
       runner.run-nvim.enable = true;
       statusline.lualine.enable = true;
@@ -201,6 +203,22 @@
             enable_cursor_planning_mode = true;
             enable_claude_text_editor_tool_mode = true;
             behaviour.auto_suggestions = false;
+            selector = {
+              exclude_auto_select = [ "NvimTree" ];
+            };
+            system_prompt = ''
+              function()
+                local hub = require("mcphub").get_hub_instance()
+                return hub and hub:get_active_servers_prompt() or ""
+              end
+            '';
+            custom_tools = ''
+              function()
+                return {
+                    require("mcphub.extensions.avante").mcp_tool(),
+                }
+              end
+            '';
           };
         };
       };
@@ -287,7 +305,30 @@
             lsp_server = "intelephense";
           };
         };
+
+        "mcphub.nvim" = {
+          package = mcphub-nvim;
+          setupModule = "mcphub";
+          setupOpts = {
+            workspace = {
+              enabled = true;
+              look_for = [ ".mcphub/servers.json", ".vscode/mcp.json", ".cursor/mcp.json" ];
+              reload_on_dir_changed = true;
+              port_range = { min = 40000, max = 41000 };
+              get_port = nil;
+            };
+            extensions = {
+              avante = {
+                make_slash_commands = true;
+              };
+            };
+          };
+        };
       };
+
+      extraPackages = [
+        mcp-hub
+      ];
     };
   };
 }

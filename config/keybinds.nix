@@ -38,6 +38,32 @@
         desc = "Unindent selection";
         noremap = true;
       }
+      {
+          key = "<leader>a+";
+          action = ''
+            function()
+              local tree_ext = require("avante.extensions.nvim_tree")
+              tree_ext.add_file()
+            end
+          '';
+          desc = "Select file in NvimTree";
+          ft = "NvimTree";
+          lua = true;
+          mode = "n";
+        }
+        {
+          key = "<leader>a-";
+          action = ''
+            function()
+              local tree_ext = require("avante.extensions.nvim_tree")
+              tree_ext.remove_file()
+            end
+          '';
+          desc = "Deselect file in NvimTree";
+          ft = "NvimTree";
+          lua = true;
+          mode = "n";
+        }
     ];
 
     lsp.mappings = {
@@ -95,7 +121,7 @@
               if require("laravel").app("gf").cursor_on_resource() then
                 return "<cmd>Laravel gf<CR>"
               else
-                return "gf"
+                return vim.lsp.buf.definition and "<cmd>lua vim.lsp.buf.definition()<CR>" or "gf"
               end
             end
           '';
