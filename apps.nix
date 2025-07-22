@@ -1,7 +1,11 @@
 {lib, ...}: let
   inherit (lib.meta) getExe;
 in {
-  perSystem = {config, pkgs, ...}: {
+  perSystem = {
+    config,
+    pkgs,
+    ...
+  }: {
     apps = {
       default = {
         program = getExe config.packages.default;
@@ -11,7 +15,7 @@ in {
         type = "app";
         program = getExe (pkgs.writeShellApplication {
           name = "nvf-launcher";
-          runtimeInputs = [ pkgs.nix-output-monitor ];
+          runtimeInputs = [pkgs.nix-output-monitor];
           text = ''
             # Function to check if rebuild is needed
             needs_rebuild() {

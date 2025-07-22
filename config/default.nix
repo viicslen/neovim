@@ -204,7 +204,7 @@
             enable_claude_text_editor_tool_mode = true;
             behaviour.auto_suggestions = false;
             selector = {
-              exclude_auto_select = [ "NvimTree" ];
+              exclude_auto_select = ["NvimTree"];
             };
             system_prompt = ''
               function()
@@ -312,10 +312,13 @@
           setupOpts = {
             workspace = {
               enabled = true;
-              look_for = [ ".mcphub/servers.json" ".vscode/mcp.json" ".cursor/mcp.json" ];
+              look_for = [".mcphub/servers.json" ".vscode/mcp.json" ".cursor/mcp.json"];
               reload_on_dir_changed = true;
-              port_range = { min = 40000, max = 41000 };
-              get_port = nil;
+              port_range = {
+                min = 40000;
+                max = 41000;
+              };
+              get_port = lib.mkLuaInline "nil";
             };
             extensions = {
               avante = {

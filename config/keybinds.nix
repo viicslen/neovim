@@ -39,31 +39,31 @@
         noremap = true;
       }
       {
-          key = "<leader>a+";
-          action = ''
-            function()
-              local tree_ext = require("avante.extensions.nvim_tree")
-              tree_ext.add_file()
-            end
-          '';
-          desc = "Select file in NvimTree";
-          ft = "NvimTree";
-          lua = true;
-          mode = "n";
-        }
-        {
-          key = "<leader>a-";
-          action = ''
-            function()
-              local tree_ext = require("avante.extensions.nvim_tree")
-              tree_ext.remove_file()
-            end
-          '';
-          desc = "Deselect file in NvimTree";
-          ft = "NvimTree";
-          lua = true;
-          mode = "n";
-        }
+        key = "<leader>a+";
+        action = ''
+          function()
+            local tree_ext = require("avante.extensions.nvim_tree")
+            tree_ext.add_file()
+          end
+        '';
+        desc = "Select file in NvimTree";
+        ft = "NvimTree";
+        lua = true;
+        mode = "n";
+      }
+      {
+        key = "<leader>a-";
+        action = ''
+          function()
+            local tree_ext = require("avante.extensions.nvim_tree")
+            tree_ext.remove_file()
+          end
+        '';
+        desc = "Deselect file in NvimTree";
+        ft = "NvimTree";
+        lua = true;
+        mode = "n";
+      }
     ];
 
     lsp.mappings = {

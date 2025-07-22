@@ -33,11 +33,13 @@
             {
               # Pass the custom packages to the nvf configuration
               _module.args = {
-                inherit (config.packages)
+                inherit
+                  (config.packages)
                   laravel-nvim
                   neotest-pest
                   mcphub-nvim
-                  mcp-hub;
+                  mcp-hub
+                  ;
               };
             }
             ./config
