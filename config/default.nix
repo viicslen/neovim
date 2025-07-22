@@ -312,7 +312,7 @@
           setupOpts = {
             workspace = {
               enabled = true;
-              look_for = [ ".mcphub/servers.json", ".vscode/mcp.json", ".cursor/mcp.json" ];
+              look_for = [ ".mcphub/servers.json" ".vscode/mcp.json" ".cursor/mcp.json" ];
               reload_on_dir_changed = true;
               port_range = { min = 40000, max = 41000 };
               get_port = nil;
