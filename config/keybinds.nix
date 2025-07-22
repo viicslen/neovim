@@ -47,7 +47,6 @@
           end
         '';
         desc = "Select file in NvimTree";
-        ft = "NvimTree";
         lua = true;
         mode = "n";
       }
@@ -60,7 +59,6 @@
           end
         '';
         desc = "Deselect file in NvimTree";
-        ft = "NvimTree";
         lua = true;
         mode = "n";
       }
