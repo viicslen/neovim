@@ -27,9 +27,8 @@
       toggleOpLeaderLine = "<leader>/";
       toggleOpLeaderBlock = "<leader>?";
     };
-  };
 
-  keymaps = [
+      keymaps = [
       {
         key = "<C-s>";
         mode = ["n" "v" "i"];
@@ -131,4 +130,5 @@
         mode = "n";
       }
     ];
+  };
 }
