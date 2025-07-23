@@ -25,6 +25,7 @@
       mcp-hub = pkgs.callPackage ./pkgs/mcp-hub.nix {};
       laravel-nvim = pkgs.callPackage ./pkgs/laravel-nvim.nix {};
       neotest-pest = pkgs.callPackage ./pkgs/neotest-pest.nix {};
+      worktrees-nvim = pkgs.callPackage ./pkgs/worktrees-nvim.nix {};
 
       default =
         (inputs.nvf.lib.neovimConfiguration {
@@ -39,6 +40,7 @@
                   neotest-pest
                   mcphub-nvim
                   mcp-hub
+                  worktrees-nvim
                   ;
               };
             }

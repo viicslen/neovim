@@ -1,4 +1,5 @@
 {
+  worktrees-nvim,
   neotest-pest,
   laravel-nvim,
   mcphub-nvim,
@@ -121,6 +122,12 @@
           hidden = true;
           no_ignore = true;
         };
+        extensions = [
+          {
+            name = "worktrees";
+            packages = [worktrees-nvim];
+          }
+        ];
       };
 
       treesitter = {
@@ -167,9 +174,9 @@
           setupOpts = {
             lazygit.configure = true;
             explorer.replace_netrw = true;
-            input = {};
-            quickfile = {};
-            picker.sources.explorer = {};
+            input = lib.mkLuaInline "{}";
+            quickfile = lib.mkLuaInline "{}";
+            picker.sources.explorer = lib.mkLuaInline "{}";
           };
         };
       };
@@ -304,6 +311,13 @@
           setupOpts = {
             lsp_server = "intelephense";
           };
+        };
+
+        "worktrees.nvim" = {
+          package = worktrees-nvim;
+          setupModule = "worktrees";
+          setupOpts = {};
+          lazy = true;
         };
 
         "mcphub.nvim" = {

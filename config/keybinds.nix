@@ -1,6 +1,35 @@
 {
   config.vim = {
-    keymaps = [
+    lsp.mappings = {
+      goToDeclaration = "<leader>gD";
+      goToDefinition = "<leader>gd";
+      goToType = "<leader>gt";
+      hover = "<leader>h";
+      listImplementations = "<leader>gi";
+      listReferences = "<leader>gr";
+    };
+
+    tabline.nvimBufferline.mappings = {
+      closeCurrent = "<leader>x";
+      cycleNext = "<Tab>";
+      cyclePrevious = "<S-Tab>";
+    };
+
+    assistant.copilot.mappings = {
+      suggestion.acceptLine = "<M-L>";
+    };
+
+    comments.comment-nvim.mappings = {
+      toggleCurrentLine = "<C-/>";
+      toggleCurrentBlock = "<C-?>";
+      toggleSelectedLine = "<C-/>";
+      toggleSelectedBlock = "<C-?>";
+      toggleOpLeaderLine = "<leader>/";
+      toggleOpLeaderBlock = "<leader>?";
+    };
+  };
+
+  keymaps = [
       {
         key = "<C-s>";
         mode = ["n" "v" "i"];
@@ -38,63 +67,9 @@
         desc = "Unindent selection";
         noremap = true;
       }
+
+      # Laravel
       {
-        key = "<leader>a+";
-        action = ''
-          function()
-            local tree_ext = require("avante.extensions.nvim_tree")
-            tree_ext.add_file()
-          end
-        '';
-        desc = "Select file in NvimTree";
-        lua = true;
-        mode = "n";
-      }
-      {
-        key = "<leader>a-";
-        action = ''
-          function()
-            local tree_ext = require("avante.extensions.nvim_tree")
-            tree_ext.remove_file()
-          end
-        '';
-        desc = "Deselect file in NvimTree";
-        lua = true;
-        mode = "n";
-      }
-    ];
-
-    lsp.mappings = {
-      goToDeclaration = "<leader>gD";
-      goToDefinition = "<leader>gd";
-      goToType = "<leader>gt";
-      hover = "<leader>h";
-      listImplementations = "<leader>gi";
-      listReferences = "<leader>gr";
-    };
-
-    tabline.nvimBufferline.mappings = {
-      closeCurrent = "<leader>x";
-      cycleNext = "<Tab>";
-      cyclePrevious = "<S-Tab>";
-    };
-
-    assistant.copilot.mappings = {
-      suggestion.acceptLine = "<M-L>";
-    };
-
-    comments.comment-nvim.mappings = {
-      toggleCurrentLine = "<C-/>";
-      toggleCurrentBlock = "<C-?>";
-      toggleSelectedLine = "<C-/>";
-      toggleSelectedBlock = "<C-?>";
-      toggleOpLeaderLine = "<leader>/";
-      toggleOpLeaderBlock = "<leader>?";
-    };
-
-    lazy.plugins = {
-      "laravel.nvim".keys = [
-        {
           key = "<leader>lla";
           action = ":Laravel artisan<cr>";
           desc = "Laravel Artisan";
@@ -128,7 +103,32 @@
           expr = true;
           mode = "n";
         }
-      ];
-    };
-  };
+
+      # Worktrees
+      {
+        key = "<leader>gws";
+        action = ''
+          function()
+            require("telescope").extensions.worktrees.list_worktrees(opts)
+          end
+        '';
+        desc = "Worktrees picker";
+        lua = true;
+        mode = "n";
+      }
+      {
+        key = "<leader>gwc";
+        action = ":GitWorktreeCreate<CR>";
+        desc = "New worktree";
+        lua = true;
+        mode = "n";
+      }
+      {
+        key = "<leader>gwa";
+        action = ":GitWorktreeCreateExisting<CR>";
+        desc = "Creating worktree for existing branch";
+        lua = true;
+        mode = "n";
+      }
+    ];
 }
