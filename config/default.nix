@@ -206,13 +206,13 @@
             selector = {
               exclude_auto_select = ["NvimTree"];
             };
-            system_prompt = ''
+            system_prompt = lib.mkLuaInline ''
               function()
                 local hub = require("mcphub").get_hub_instance()
                 return hub and hub:get_active_servers_prompt() or ""
               end
             '';
-            custom_tools = ''
+            custom_tools = lib.mkLuaInline ''
               function()
                 return {
                     require("mcphub.extensions.avante").mcp_tool(),
