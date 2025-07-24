@@ -119,14 +119,12 @@
         key = "<leader>gwc";
         action = ":GitWorktreeCreate<CR>";
         desc = "New worktree";
-        lua = true;
         mode = "n";
       }
       {
         key = "<leader>gwa";
         action = ":GitWorktreeCreateExisting<CR>";
         desc = "Creating worktree for existing branch";
-        lua = true;
         mode = "n";
       }
     ];
