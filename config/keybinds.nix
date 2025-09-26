@@ -28,7 +28,7 @@
       toggleOpLeaderBlock = "<leader>?";
     };
 
-      keymaps = [
+    keymaps = [
       {
         key = "<C-s>";
         mode = ["n" "v" "i"];
@@ -69,39 +69,39 @@
 
       # Laravel
       {
-          key = "<leader>lla";
-          action = ":Laravel artisan<cr>";
-          desc = "Laravel Artisan";
-          mode = "n";
-        }
-        {
-          key = "<leader>llr";
-          action = ":Laravel routes<cr>";
-          desc = "Laravel Routes";
-          mode = "n";
-        }
-        {
-          key = "<leader>llm";
-          action = ":Laravel related<cr>";
-          desc = "Laravel Related";
-          mode = "n";
-        }
-        {
-          key = "gf";
-          action = ''
-            function()
-              if require("laravel").app("gf").cursor_on_resource() then
-                return "<cmd>Laravel gf<CR>"
-              else
-                return vim.lsp.buf.definition and "<cmd>lua vim.lsp.buf.definition()<CR>" or "gf"
-              end
+        key = "<leader>lla";
+        action = ":Laravel artisan<cr>";
+        desc = "Laravel Artisan";
+        mode = "n";
+      }
+      {
+        key = "<leader>llr";
+        action = ":Laravel routes<cr>";
+        desc = "Laravel Routes";
+        mode = "n";
+      }
+      {
+        key = "<leader>llm";
+        action = ":Laravel related<cr>";
+        desc = "Laravel Related";
+        mode = "n";
+      }
+      {
+        key = "gf";
+        action = ''
+          function()
+            if require("laravel").app("gf").cursor_on_resource() then
+              return "<cmd>Laravel gf<CR>"
+            else
+              return vim.lsp.buf.definition and "<cmd>lua vim.lsp.buf.definition()<CR>" or "gf"
             end
-          '';
-          lua = true;
-          noremap = false;
-          expr = true;
-          mode = "n";
-        }
+          end
+        '';
+        lua = true;
+        noremap = false;
+        expr = true;
+        mode = "n";
+      }
 
       # Worktrees
       {
